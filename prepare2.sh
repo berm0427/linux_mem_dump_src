@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Step 22: Generate JSON symbol file
+cd ~/dwarf2json
 sudo ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-$kernel_version --system-map /boot/System.map-$kernel_version > Ubuntu22.04-$kernel_version.json
 
 # Step 23-24: Move the JSON file to the appropriate directory for Volatility 3
@@ -9,11 +10,12 @@ mv ./Ubuntu22.04-$kernel_version.json ~/volatility3/volatility3/symbols/linux
 
 # Step 25: Clone LiME tool if it doesn't exist
 if [ ! -d "~/LiME" ]; then
+    cd ~
     git clone --recursive https://github.com/504ensicsLabs/LiME.git
 fi
 
 # Step 26-27: Run LiME to collect artifacts and take a memory snapshot
-cd LiME
+cd ~/LiME
 cd src
 
 # 현재 디렉토리의 절대 경로를 저장
