@@ -5,3 +5,7 @@
 sudo chown root:root \<script-name>\.sh
 
 sudo ./ \<script-name>\.sh
+
+if you have a problem with couldn't get lock-* or similar thing
+
+plz restart your linux and try again
