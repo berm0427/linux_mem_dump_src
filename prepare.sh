@@ -87,7 +87,7 @@ sudo ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-$kernel_version --syst
 mkdir -p ~/volatility3/volatility3/symbols/linux
 mv ./Ubuntu22.04-$kernel_version.json ~/volatility3/volatility3/symbols/linux
 
-# Step 25: Clone UAC tool if it doesn't exist
+# Step 25: Clone LiME tool if it doesn't exist
 if [ ! -d "~/LiME" ]; then
     git clone --recursive https://github.com/504ensicsLabs/LiME.git
 fi
