@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo chown root:root *
+sudo chown root:root *.sh
 
-sudo chmod +x *
+sudo chmod +x *.sh
