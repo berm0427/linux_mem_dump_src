@@ -79,3 +79,5 @@ sudo apt update
 
 # Step 20: Install debugging symbols for the kernel
 sudo apt install -y linux-image-${kernel_version}-dbgsym
+
+echo "plz execute prepare2.sh for next!"
