@@ -1,12 +1,15 @@
 #!/bin/bash
 
+kernel_version=$(uname -r)
+lsb_v=$(lsb_release -r | awk '{print $2}')
+
 # Step 22: Generate JSON symbol file
 cd ~/dwarf2json
-sudo ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-$kernel_version --system-map /boot/System.map-$kernel_version > Ubuntu22.04-$kernel_version.json
+sudo ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-$kernel_version --system-map /boot/System.map-$kernel_version > Ubuntu${lsb_v}-${kernel_version}.json
 
 # Step 23-24: Move the JSON file to the appropriate directory for Volatility 3
 mkdir -p ~/volatility3/volatility3/symbols/linux
-mv ./Ubuntu22.04-$kernel_version.json ~/volatility3/volatility3/symbols/linux
+mv ./Ubuntu${lsb_v}-${kernel_version}.json ~/volatility3/volatility3/symbols/linux
 
 # Step 25: Clone LiME tool if it doesn't exist
 if [ ! -d "~/LiME" ]; then
