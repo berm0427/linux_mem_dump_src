@@ -1,4 +1,4 @@
-#
+#!/bin/bash
 
 # Step 22: Generate JSON symbol file
 sudo ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-$kernel_version --system-map /boot/System.map-$kernel_version > Ubuntu22.04-$kernel_version.json
