@@ -4,4 +4,4 @@
 # usage
 sudo chown root:root \<script-name>\.sh
 
-sudo ./ "\<script-name>\".sh
+sudo ./ \<script-name>\.sh
