@@ -4,7 +4,7 @@
 # usage
 sudo chown root:root pre_prepare.sh
 
-chmod +x pre_prepare.sh
+sudo chmod +x pre_prepare.sh
 
 sudo ./pre_prepare.sh
 
