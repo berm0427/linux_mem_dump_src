@@ -51,4 +51,4 @@ else
 fi
 
 # Notify the user to reboot the system
-echo "The GRUB configuration has been updated."
+echo "The GRUB configuration has been updated and now you can use vol3! with lime file!"
