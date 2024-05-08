@@ -36,4 +36,4 @@ su -c "bash -c 'cd \"$CURRENT_DIR\" && make && \"$CURRENT_DIR\"insmod ./lime-${k
 
 # Step 28: Notify completion
 exit
-echo "Complete now you can use vol3! with lime file!"
+echo "plz execute setting_CAP_SYS_ADMIN.sh for next!"
