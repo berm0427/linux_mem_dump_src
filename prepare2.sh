@@ -14,7 +14,7 @@ lsb_v=$(lsb_release -r | awk '{print $2}')
 
 # Step 22: Generate JSON symbol file
 cd "$USER_HOME/dwarf2json"
-if ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-$kernel_version --system-map /boot/System.map-$kernel_version > Ubuntu${lsb_v}-${kernel_version}.json; then
+if ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-$kernel_version --system-map /boot/System.map-$kernel_version > Ubuntu$lsb_v-$kernel_version.json; then
     echo "JSON symbol file generated successfully."
 else
     echo "Error: Failed to generate JSON symbol file. Please ensure vmlinux file exists."
@@ -23,7 +23,7 @@ fi
 
 # Step 23-24: Move the JSON file to the appropriate directory for Volatility 3
 mkdir -p "$USER_HOME/volatility3/volatility3/symbols/linux"
-mv "./Ubuntu${lsb_v}-${kernel_version}.json" "$USER_HOME/volatility3/volatility3/symbols/linux"
+mv "./Ubuntu$lsb_v-$kernel_version.json" "$USER_HOME/volatility3/volatility3/symbols/linux"
 
 # Step 25: Clone LiME tool if it doesn't exist
 if [ ! -d "$USER_HOME/LiME" ]; then
@@ -38,7 +38,7 @@ cd "$USER_HOME/LiME/src"
 make
 
 # LiME 모듈을 루트 권한으로 로드
-insmod "./lime-${kernel_version}.ko" "path=$USER_HOME/Ubuntu.lime format=lime"
+insmod "./lime-$kernel_version.ko" "path=$USER_HOME/Ubuntu.lime format=lime"
 
 # Step 28: Notify completion
 echo "Please execute setting_CAP_SYS_ADMIN.sh for next!"
