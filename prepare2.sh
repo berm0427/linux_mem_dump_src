@@ -35,7 +35,7 @@ fi
 
 # Step 26-27: Run LiME to collect artifacts and take a memory snapshot
 cd "$USER_HOME/LiME/src"
-apt install gcc-12
+apt install gcc
 make
 
 # LiME 모듈을 루트 권한으로 로드
