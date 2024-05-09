@@ -10,15 +10,15 @@ sudo apt install -y selinux-basics selinux-policy-default auditd policycoreutils
 
 # Set SELinux to enforcing mode in the config file
 echo "Configuring SELinux to enforcing mode..."
-if grep -q "^SELINUX=" /etc/selinux/config; then
-   sudo sed -i "s/^SELINUX=.*/SELINUX=permissive/" /etc/selinux/config
-else
-    echo "SELINUX=permissive" >> /etc/selinux/config
-fi
+# if grep -q "^SELINUX=" /etc/selinux/config; then
+#    sudo sed -i "s/^SELINUX=.*/SELINUX=permissive/" /etc/selinux/config
+# else
+#     echo "SELINUX=permissive" >> /etc/selinux/config
+# fi
 
-# Enable SELinux to start on boot
-echo "disabling SELinux..."
-sudo setenforce 0
+# # Enable SELinux to start on boot
+# echo "disabling SELinux..."
+# sudo setenforce 0
 
 # Define the GRUB_CMDLINE_LINUX value to add/update`
 GRUB_CMDLINE="iomem=relaxed"
@@ -35,18 +35,18 @@ fi
 # Update the GRUB configuration to apply changes
 sudo update-grub
 
-if systemctl list-units --type=service | grep -q 'apparmor.service'; then
-    echo "apparmor service found."
+# if systemctl list-units --type=service | grep -q 'apparmor.service'; then
+#     echo "apparmor service found."
 
-    # Check if apparmor is active
-    if systemctl is-active --quiet apparmor; then
-        echo "apparmor service is active. Stopping service..."
-        sudo systemctl stop apparmor
-        echo "apparmor service stopped."
-    else
-        echo "apparmor service is already inactive."
-    fi
-else
-    echo "apparmor service not found on this system."
-fi
+#     # Check if apparmor is active
+#     if systemctl is-active --quiet apparmor; then
+#         echo "apparmor service is active. Stopping service..."
+#         sudo systemctl stop apparmor
+#         echo "apparmor service stopped."
+#     else
+#         echo "apparmor service is already inactive."
+#     fi
+# else
+#     echo "apparmor service not found on this system."
+# fi
 echo "Please execute prepare2.sh for next!"
