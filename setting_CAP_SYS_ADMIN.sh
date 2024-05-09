@@ -49,6 +49,3 @@ if systemctl list-units --type=service | grep -q 'apparmor.service'; then
 else
     echo "apparmor service not found on this system."
 fi
-
-# Notify the user to reboot the system
-echo "The GRUB configuration has been updated and now you can use vol3! with lime file!"
