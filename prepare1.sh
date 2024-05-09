@@ -1,6 +1,7 @@
 #!/bin/bash
-
-cd ~
+# Get the original user's home directory
+USER_HOME=$(eval echo ~${SUDO_USER})
+cd $USER_HOME
 
 # Step 0: Update apt packages
 sudo apt update
@@ -40,8 +41,8 @@ python3 setup.py install
 python3 vol.py -h
 
 # Step 9: Clone dwarf2json if it doesn't exist
-if [ ! -d "~/dwarf2json" ]; then
-    cd ~
+if [ ! -d "$USER_HOME/dwarf2json" ]; then
+    cd $USER_HOME
     git clone https://github.com/volatilityfoundation/dwarf2json.git
     cd dwarf2json
 else
