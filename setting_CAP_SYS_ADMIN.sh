@@ -49,3 +49,4 @@ if systemctl list-units --type=service | grep -q 'apparmor.service'; then
 else
     echo "apparmor service not found on this system."
 fi
+echo "Please execute prepare2.sh for next!"
