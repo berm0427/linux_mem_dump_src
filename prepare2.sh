@@ -42,4 +42,4 @@ make
 insmod "./lime-$kernel_version.ko" "path=$USER_HOME/Ubuntu.lime format=lime"
 
 # Step 28: Notify completion
-echo "Please execute setting_CAP_SYS_ADMIN.sh for next!"
+echo "The GRUB configuration has been updated and now you can use vol3! with lime file!"
