@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# you should run it if occur unknown error
+# you should run it if you want to check var for solving unknown error
  
 # Check if the script is being run as root
 if [[ $EUID -ne 0 ]]; then
