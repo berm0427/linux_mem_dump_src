@@ -5,8 +5,8 @@ echo "Updating package list..."
 sudo apt update
 
 # Install SELinux packages
-echo "Installing SELinux packages..."
-sudo apt install -y selinux-basics selinux-policy-default auditd policycoreutils
+# echo "Installing SELinux packages..."
+# sudo apt install -y selinux-basics selinux-policy-default auditd policycoreutils
 
 # Set SELinux to enforcing mode in the config file
 echo "Configuring SELinux to enforcing mode..."
@@ -16,7 +16,7 @@ echo "Configuring SELinux to enforcing mode..."
 #     echo "SELINUX=permissive" >> /etc/selinux/config
 # fi
 
-# # Enable SELinux to start on boot
+# Enable SELinux to start on boot
 # echo "disabling SELinux..."
 # sudo setenforce 0
 
