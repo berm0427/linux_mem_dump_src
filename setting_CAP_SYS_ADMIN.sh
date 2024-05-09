@@ -9,7 +9,7 @@ sudo apt update
 # sudo apt install -y selinux-basics selinux-policy-default auditd policycoreutils
 
 # Set SELinux to enforcing mode in the config file
-echo "Configuring SELinux to enforcing mode..."
+# echo "Configuring SELinux to enforcing mode..."
 # if grep -q "^SELINUX=" /etc/selinux/config; then
 #    sudo sed -i "s/^SELINUX=.*/SELINUX=permissive/" /etc/selinux/config
 # else
