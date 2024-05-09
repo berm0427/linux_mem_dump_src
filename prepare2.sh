@@ -1,14 +1,21 @@
 #!/bin/bash
 
-# Check if the script is being run as root
+# Set the original user's home directory before switching to root
+USER_HOME=$(eval echo ~${SUDO_USER})
+
+# Switch to root account
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
+    echo "Switching to root account"
+    exec su -c "USER_HOME=${USER_HOME} bash $0"
+fi
+
+# Verify that the script is now running as root
+if [[ $EUID -ne 0 ]]; then
+   echo "Failed to switch to root account" 
    exit 1
 fi
 
-# Get the original user's home directory
-USER_HOME=$(eval echo ~${SUDO_USER})
-
+# Retrieve system info variables
 kernel_version=$(uname -r)
 lsb_v=$(lsb_release -r | awk '{print $2}')
 
@@ -35,11 +42,11 @@ fi
 
 # Step 26-27: Run LiME to collect artifacts and take a memory snapshot
 cd "$USER_HOME/LiME/src"
-apt install gcc
+apt install -y gcc
 make
 
 # LiME 모듈을 루트 권한으로 로드
 insmod "./lime-$kernel_version.ko" "path=$USER_HOME/Ubuntu.lime format=lime"
 
 # Step 28: Notify completion
-echo "The GRUB configuration has been updated and now you can use vol3! with lime file!"
+echo "The GRUB configuration has been updated and now you can use vol3 with the lime file!"
