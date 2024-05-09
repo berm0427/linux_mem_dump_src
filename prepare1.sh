@@ -54,8 +54,8 @@ if ! dpkg -s golang-go &> /dev/null; then
 fi
 
 # Step 12-13: Download go dependencies and build dwarf2json
-go mod download github.com/spf13/pflag
-go build
+sudo go mod download github.com/spf13/pflag
+sudo go build
 
 # Step 14: Check if dwarf2json is installed correctly
 ./dwarf2json --help
