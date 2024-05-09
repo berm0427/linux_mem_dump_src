@@ -1,39 +1,44 @@
 #!/bin/bash
 
+# Check if the script is being run as root
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
+
+# Get the original user's home directory
+USER_HOME=$(eval echo ~${SUDO_USER})
+
 kernel_version=$(uname -r)
 lsb_v=$(lsb_release -r | awk '{print $2}')
 
 # Step 22: Generate JSON symbol file
-cd ~/dwarf2json
-sudo ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-$kernel_version --system-map /boot/System.map-$kernel_version > Ubuntu${lsb_v}-${kernel_version}.json
+cd "$USER_HOME/dwarf2json"
+if ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-$kernel_version --system-map /boot/System.map-$kernel_version > Ubuntu${lsb_v}-${kernel_version}.json; then
+    echo "JSON symbol file generated successfully."
+else
+    echo "Error: Failed to generate JSON symbol file. Please ensure vmlinux file exists."
+    exit 1
+fi
 
 # Step 23-24: Move the JSON file to the appropriate directory for Volatility 3
-mkdir -p ~/volatility3/volatility3/symbols/linux
-mv ./Ubuntu${lsb_v}-${kernel_version}.json ~/volatility3/volatility3/symbols/linux
+mkdir -p "$USER_HOME/volatility3/volatility3/symbols/linux"
+mv "./Ubuntu${lsb_v}-${kernel_version}.json" "$USER_HOME/volatility3/volatility3/symbols/linux"
 
 # Step 25: Clone LiME tool if it doesn't exist
-if [ ! -d "~/LiME" ]; then
-    cd ~
+if [ ! -d "$USER_HOME/LiME" ]; then
+    cd "$USER_HOME"
     git clone --recursive https://github.com/504ensicsLabs/LiME.git
+else
+    echo "LiME directory already exists."
 fi
 
 # Step 26-27: Run LiME to collect artifacts and take a memory snapshot
-cd ~/LiME
-cd src
+cd "$USER_HOME/LiME/src"
+make
 
-# 현재 디렉토리의 절대 경로를 저장
-CURRENT_DIR=$(pwd)
-
-cd ..
-CURRENT_DIR2=$(pwd)
-
-# 루트 사용자로 전환하여 경로 이동
-echo "Switching to root and changing directory to: $CURRENT_DIR"
-
-# su -로 루트 전환 후 해당 경로로 이동
-su -c "bash -c 'cd \"$CURRENT_DIR\" && make && \"$CURRENT_DIR\"insmod ./lime-${kernel_version}-generic.ko "path=./Ubuntu.lime format=lime"'"
-
+# LiME 모듈을 루트 권한으로 로드
+insmod "./lime-${kernel_version}.ko" "path=$USER_HOME/Ubuntu.lime format=lime"
 
 # Step 28: Notify completion
-exit
-echo "plz execute setting_CAP_SYS_ADMIN.sh for next!"
+echo "Please execute setting_CAP_SYS_ADMIN.sh for next!"
