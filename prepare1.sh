@@ -46,7 +46,7 @@ if [ ! -d "$USER_HOME/dwarf2json" ]; then
     git clone https://github.com/volatilityfoundation/dwarf2json.git
     cd dwarf2json
 else
-    cd dwarf2json
+    cd $USER_HOME/dwarf2json
 fi
 
 # Step 10: Install golang-go if not present
