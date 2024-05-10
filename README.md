@@ -4,9 +4,7 @@
 만일 작업 중 "죽었음"이 뜨는 경우 RAM을 8GB이상으로 잡고 다시 시도하시길 바람
 
 # usage
-sudo chown root:root pre_prepare.sh
-
-sudo chmod +x pre_prepare.sh
+chmod +x pre_prepare.sh
 
 sudo ./pre_prepare.sh
 
