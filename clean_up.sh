@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 리눅스에서 두번 다시 덤프를 뜨지 않고자 할 때 정리용으로 사용하는 것을 추천
+
 # Remove Volatility 3, dwarf2json, UAC directories if they exist
 USER_HOME=$(eval echo ~${SUDO_USER})
 rm -rf $USER_HOME/volatility3 $USER_HOME/dwarf2json $USER_HOME/LiME
