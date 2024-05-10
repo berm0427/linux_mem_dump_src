@@ -48,7 +48,7 @@ apt install -y gcc
 make
 
 # LiME 모듈을 루트 권한으로 로드
-insmod "./lime-$kernel_version.ko" "path=$USER_HOME/Ubuntu.lime format=lime"
+sudo insmod ./lime-$kernel_version.ko "path=$USER_HOME/volatility3/Ubuntu.lime format=lime"
 
 # Step 28: Notify completion
 echo "The GRUB configuration has been updated and now you can use vol3 with the lime file!"
