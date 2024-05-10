@@ -10,17 +10,17 @@ sudo apt autoremove -y
 # SELinux를 enforcing 모드로 설정
 echo "Configuring SELinux to enforcing mode..."
 
-if grep -q "^SELINUX=" /etc/selinux/config; then
-    # 기존 SELINUX 설정을 enforcing 모드로 변경
-    sudo sed -i "s/^SELINUX=.*/SELINUX=enforcing/" /etc/selinux/config
-else
-    # SELINUX 설정이 없는 경우 새로 추가
-    echo "SELINUX=enforcing" | sudo tee -a /etc/selinux/config
-fi
+# if grep -q "^SELINUX=" /etc/selinux/config; then
+#     # 기존 SELINUX 설정을 enforcing 모드로 변경
+#     sudo sed -i "s/^SELINUX=.*/SELINUX=enforcing/" /etc/selinux/config
+# else
+#     # SELINUX 설정이 없는 경우 새로 추가
+#     echo "SELINUX=enforcing" | sudo tee -a /etc/selinux/config
+# fi
 
-# 즉시 enforcing 모드로 변경
-echo "Enabling SELinux enforcing mode..."
-sudo setenforce 1
+# # 즉시 enforcing 모드로 변경
+# echo "Enabling SELinux enforcing mode..."
+# sudo setenforce 1
 
 # GRUB_CMDLINE_LINUX에서 iomem=relaxed 제거
 GRUB_CONFIG_FILE="/etc/default/grub"
@@ -35,20 +35,20 @@ else
     echo "The specified GRUB_CMDLINE_LINUX value is not present."
 fi
 
-if systemctl list-units --type=service | grep -q 'apparmor.service'; then
-    echo "apparmor service found."
+# if systemctl list-units --type=service | grep -q 'apparmor.service'; then
+#     echo "apparmor service found."
 
-    # Check if apparmor is active
-    if ! systemctl is-active --quiet apparmor; then
-        echo "apparmor service is unactive. Starting service..."
-        sudo systemctl start apparmor
-        echo "apparmor service started."
-    else
-        echo "apparmor service is already started."
-    fi
-else
-    echo "apparmor service not found on this system."
-fi
+#     # Check if apparmor is active
+#     if ! systemctl is-active --quiet apparmor; then
+#         echo "apparmor service is unactive. Starting service..."
+#         sudo systemctl start apparmor
+#         echo "apparmor service started."
+#     else
+#         echo "apparmor service is already started."
+#     fi
+# else
+#     echo "apparmor service not found on this system."
+# fi
 # GRUB 구성을 업데이트하여 변경사항 적용
 echo "Updating GRUB configuration..."
 sudo update-grub
