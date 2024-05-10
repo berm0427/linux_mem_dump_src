@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Remove Volatility 3, dwarf2json, UAC directories if they exist
-rm -rf ~/volatility3 ~/dwarf2json ~/LiME
+USER_HOME=$(eval echo ~${SUDO_USER})
+rm -rf $USER_HOME/volatility3 $USER_HOME/dwarf2json $USER_HOME/LiME
 
 # Remove any unneeded packages installed during the script execution
 sudo apt autoremove -y
