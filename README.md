@@ -14,7 +14,7 @@ and execute sequentially
 
 like below:
 
-sudo ./</script_name>/.sh
+sudo ./<\script_name>\.sh
 
 
 if you have a problem with couldn't get lock-* or similar thing
