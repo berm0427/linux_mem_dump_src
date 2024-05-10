@@ -12,6 +12,11 @@ sudo ./pre_prepare.sh
 
 and execute sequentially
 
+like below:
+
+sudo ./</script_name>/.sh
+
+
 if you have a problem with couldn't get lock-* or similar thing
 
 plz restart your linux and try again
