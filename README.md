@@ -3,6 +3,11 @@
 
 만일 작업 중 "죽었음"이 뜨는 경우 RAM을 8GB이상으로 잡고 다시 시도하시길 바람
 
+
+if you have a problem with couldn't get lock-* or similar thing
+
+plz restart your linux and try again
+
 # usage
 chmod +x pre_prepare.sh
 
@@ -13,8 +18,3 @@ and execute sequentially
 like below:
 
 sudo ./\<script_name>\.sh
-
-
-if you have a problem with couldn't get lock-* or similar thing
-
-plz restart your linux and try again
