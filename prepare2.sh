@@ -44,6 +44,7 @@ fi
 
 # Step 26-27: Run LiME to collect artifacts and take a memory snapshot
 cd "$USER_HOME/LiME/src"
+apt install -y gcc-12
 apt install -y gcc
 make
 
