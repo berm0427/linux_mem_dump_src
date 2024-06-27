@@ -17,13 +17,12 @@ fi
 
 # Retrieve system info variables
 kernel_version=$(uname -r)
-lsb_v=$(lsb_release -r | awk '{print $2}')
 
 # Step 22: Generate JSON symbol file
 cd "$USER_HOME/dwarf2json"
 mkdir -p "$USER_HOME/volatility3/volatility3/symbols/linux"
 
-if ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-$kernel_version --system-map /boot/System.map-$kernel_version > Ubuntu$lsb_v-$kernel_version.json; then
+if ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-$kernel_version --system-map /boot/System.map-$kernel_version > Ubuntu-$(lsb_release -r | awk '{print $2}')-$kernel_version.json; then
     echo "JSON symbol file generated successfully."
 else
     echo "Error: Failed to generate JSON symbol file. Please ensure vmlinux file exists."
