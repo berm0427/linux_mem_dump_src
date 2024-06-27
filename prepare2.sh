@@ -2,6 +2,7 @@
 
 # Set the original user's home directory before switching to root
 USER_HOME=$(eval echo ~${SUDO_USER})
+lsb_v=$(lsb_release -r | awk '{print $2}')
 
 # Switch to root account
 if [[ $EUID -ne 0 ]]; then
