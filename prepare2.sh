@@ -51,7 +51,7 @@ make
 # LiME 모듈을 루트 권한으로 로드
 sudo insmod ./lime-$kernel_version.ko "path=$USER_HOME/volatility3/Ubuntu.lime format=lime"
 
-# if ocuur skip BTf ~ 
+# if ocuur Skipping BTF generation for /<your_home_dir>/LiME/src/LiME.ko due to unavailability of vmlinux 
 # https://askubuntu.com/questions/1348250/skipping-btf-generation-xxx-due-to-unavailability-of-vmlinux-on-ubuntu-21-04
 
 # Step 28: Notify completion
